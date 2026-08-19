@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout from GitHub') {
             steps {
                 git branch: 'main', 
-                    url: https://github.com/injamurikumar410-create/spring-boot-mongo-docker-kkfunda-kk.git
+                    url: 'https://github.com/injamurikumar410-create/spring-boot-mongo-docker-kkfunda-kk.git'
             }
         }
 
