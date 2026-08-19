@@ -1,14 +1,11 @@
-
-
-
 pipeline {
     agent any
 
     stages {
         stage('Checkout from GitHub') {
             steps {
-                git branch: 'main', 
-                    url: 'https://github.com/kkdevopsb8/spring-boot-mongo-docker-kkfunda-kk.git'
+                git branch: 'feature', 
+                    url: https://github.com/injamurikumar410-create/spring-boot-mongo-docker-kkfunda-kk.git
             }
         }
 
@@ -17,7 +14,7 @@ pipeline {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
                                   credentialsId: 'aws-eks-cred']]) {
                     sh '''
-                        aws eks update-kubeconfig --region ap-south-1 --name my-cluster
+                        aws eks update-kubeconfig --region ap-southeast-2 --name my-cluster
                     '''
                 }
             }
@@ -28,7 +25,7 @@ pipeline {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
                                   credentialsId: 'aws-eks-cred']]) {
                     sh '''
-                        kubectl apply -f springBootMongo.yml --validate=false
+                        kubectl apply -f springappmongo.yaml --validate=false
                     '''
                 }
             }
