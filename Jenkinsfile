@@ -25,7 +25,7 @@ pipeline {
         sh '''
             pwd
             ls -la
-            find . -name "springBootMongo.yaml"
+            find . -name "springBootMongo.yml"
             kubectl apply -f springBootMongo.yaml --validate=false
         '''
             }
