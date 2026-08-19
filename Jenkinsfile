@@ -22,14 +22,16 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
     steps {
-        sh '''
-            pwd
-            ls -la
-            find . -name "springBootMongo.yml"
-            kubectl apply -f springBootMongo.yml --validate=false
-        '''
-            }
+        withCredentials([[
+            $class: 'AmazonWebServicesCredentialsBinding',
+            credentialsId: 'aws-eks-cred'
+        ]]) {
+            sh '''
+                kubectl apply -f springBootMongo.yml --validate=false
+            '''
         }
+    }
+}
 
         stage('Verify Pods and Services') {
             steps {
